@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp_smartshop/widgets/bottomNavigationBar.dart';
-//ici en fait appel au child
 import 'package:tp_smartshop/widgets/product_card.dart';
 import 'package:tp_smartshop/widgets/custom_appbar.dart';
-// import de la page profil — modifie le chemin si ta page s'appelle différemment
 import 'package:tp_smartshop/pages/profile_page.dart';
 
 class HomePage extends StatelessWidget {
