@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:tp_smartshop/widgets/bottomNavigationBar.dart';
-import 'package:tp_smartshop/widgets/custom_appbar.dart';
 
-class Details extends StatefulWidget {
-  const Details({super.key});
+class ProductPage extends StatefulWidget {
+  final String name;
+  final String imagePath;
+  final String price;
+
+  const ProductPage({
+    super.key,
+    required this.imagePath,
+    required this.name,
+    required this.price,
+  });
 
   @override
-  State<Details> createState() => _DetailsState();
+  State<ProductPage> createState() => _ProductPageState();
 }
 
-class _DetailsState extends State<Details> {
+class _ProductPageState extends State<ProductPage> {
   bool added = false;
 
   void _toggleCart() {
@@ -18,25 +25,25 @@ class _DetailsState extends State<Details> {
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(added ? "Produit ajouté au panier !" : "Produit retiré du panier"),
-      )
+        content: Text(
+          added ? "Produit ajouté au panier !" : "Produit retiré du panier",
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(text: "Détail du produit"),
-      ),
+      appBar: AppBar(title : Text("Product Details")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("products/phone.png", height: 180),
-            const Text("128 Go, 8 RAM, Batterie 5000 mAh"),
+            Image.asset(widget.imagePath, height: 180),
+            Text(widget.name),
+            Text(widget.price),
             const Icon(Icons.star, color: Colors.amber),
             ElevatedButton(
               onPressed: _toggleCart,
@@ -45,7 +52,6 @@ class _DetailsState extends State<Details> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomButtomNavigationBar(),
     );
   }
 }
